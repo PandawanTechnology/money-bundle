@@ -1,0 +1,39 @@
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../money"
+        }
+    ],
+    "name": "pandawan-technology/money-bundle",
+    "description": "Integrates moneyphp/money into Symfony' applications",
+    "authors": [
+        {
+            "name": "Xavier Coureau",
+            "email": "xavier@pandawan-technology.com"
+        }
+    ],
+    "require": {
+        "pandawan-technology/money": "dev-main",
+        "symfony/dependency-injection": "^4.4||^5.0||^6.0",
+        "symfony/config": "^4.4||^5.0||^6.0",
+        "symfony/http-kernel": "^4.4||^5.0||^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5.x-dev",
+        "friendsofphp/php-cs-fixer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {"PandawanTechnology\\MoneyBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Resources/",
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PandawanTechnology\\MoneyBundle\\Tests\\": "Tests/"
+        }
+    },
+    "minimum-stability": "dev"
+}

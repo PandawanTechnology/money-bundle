@@ -1,0 +1,26 @@
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    PandawanTechnology\Money\:
+        resource: '../../../money/src'
+    PandawanTechnology\Money\Factory\MoneyFactory:
+        arguments:
+            $defaultCurrencyCode: '%pandawan_technology.money.default_currency%'
+    PandawanTechnology\Money\Formatter\Formatter:
+        arguments:
+            $defaultLocale: '%pandawan_technology.money.default_locale%'
+
+    PandawanTechnology\MoneyBundle\:
+        resource: '../../'
+        exclude:
+            - '../../DependencyInjection'
+            - '../../Tests'
+    PandawanTechnology\MoneyBundle\ConfigurationLoader\FilteredCurrencyConfigurationsLoader:
+        arguments:
+            - '@PandawanTechnology\Money\ConfigurationLoader\CurrencyConfigurationsLoader'
+            - '%pandawan_technology.money.enabled_currencies%'
+    PandawanTechnology\MoneyBundle\Formatter\CurrencyFormatter:
+        arguments:
+            $defaultLocale: '%pandawan_technology.money.default_locale%'
