@@ -11,7 +11,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use PandawanTechnology\Bundle\MoneyBundle\Entity\Money;
+use PandawanTechnology\Money\Model\Money;
 
 #[ORM\Entity]
 class Product {
