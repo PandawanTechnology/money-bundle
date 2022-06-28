@@ -12,7 +12,7 @@ final class CurrencyType extends Type
     public const CURRENCY = 'currency';
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
@@ -23,7 +23,7 @@ final class CurrencyType extends Type
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function convertToPHPValue($value, AbstractPlatform $platform): string
     {
@@ -31,7 +31,7 @@ final class CurrencyType extends Type
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getName(): string
     {

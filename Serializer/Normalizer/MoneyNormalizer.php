@@ -6,10 +6,6 @@ namespace PandawanTechnology\MoneyBundle\Serializer\Normalizer;
 
 use PandawanTechnology\Money\Formatter\FormatterInterface;
 use PandawanTechnology\Money\Model\Money;
-use Symfony\Component\Serializer\Exception\CircularReferenceException;
-use Symfony\Component\Serializer\Exception\ExceptionInterface;
-use Symfony\Component\Serializer\Exception\InvalidArgumentException;
-use Symfony\Component\Serializer\Exception\LogicException;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class MoneyNormalizer implements NormalizerInterface
@@ -19,7 +15,7 @@ class MoneyNormalizer implements NormalizerInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function supportsNormalization($data, string $format = null)
     {
@@ -29,7 +25,7 @@ class MoneyNormalizer implements NormalizerInterface
     /**
      * @param Money $object
      *
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function normalize($object, string $format = null, array $context = [])
     {

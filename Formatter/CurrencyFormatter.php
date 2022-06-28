@@ -8,6 +8,8 @@ use Symfony\Component\Intl\Currencies;
 
 class CurrencyFormatter
 {
+    public const DEFAULT_DECIMAL_SCALE = 5;
+
     public function __construct(private string $defaultLocale)
     {
     }

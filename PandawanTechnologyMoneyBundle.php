@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 final class PandawanTechnologyMoneyBundle extends Bundle
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function build(ContainerBuilder $container): void
     {

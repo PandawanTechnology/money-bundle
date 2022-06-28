@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class PandawanTechnologyMoneyExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -33,7 +33,7 @@ class PandawanTechnologyMoneyExtension extends Extension implements PrependExten
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function prepend(ContainerBuilder $container): void
     {
@@ -46,9 +46,9 @@ class PandawanTechnologyMoneyExtension extends Extension implements PrependExten
                 'mappings' => [
                     'PandawanTechnologyMoneyBundle' => [
                         'prefix' => 'PandawanTechnology\Money\Model',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ]);
     }
 }

@@ -16,7 +16,7 @@ class FilteredCurrencyConfigurationsLoader implements CurrencyConfigurationsLoad
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getCurrenciesConfigurations(): array
     {

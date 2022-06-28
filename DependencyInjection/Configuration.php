@@ -10,12 +10,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 /**
  * TODO:
  * - add a currency configuration loader
- * - validate `enabled_currencies` values to make sure it references a defined currency
+ * - validate `enabled_currencies` values to make sure it references a defined currency.
  */
 class Configuration implements ConfigurationInterface
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {

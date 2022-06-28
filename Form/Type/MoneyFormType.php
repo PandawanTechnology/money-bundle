@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 class MoneyFormType extends AbstractType
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getParent(): string
     {
@@ -18,7 +18,7 @@ class MoneyFormType extends AbstractType
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

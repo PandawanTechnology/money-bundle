@@ -21,6 +21,9 @@ services:
         arguments:
             - '@PandawanTechnology\Money\ConfigurationLoader\CurrencyConfigurationsLoader'
             - '%pandawan_technology.money.enabled_currencies%'
+    PandawanTechnology\MoneyBundle\Form\Type\SimpleMoneyFormType:
+        arguments:
+            $defaultCurrencyCode: '%pandawan_technology.money.default_currency%'
     PandawanTechnology\MoneyBundle\Formatter\CurrencyFormatter:
         arguments:
             $defaultLocale: '%pandawan_technology.money.default_locale%'

@@ -1,10 +1,4 @@
 {
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../money"
-        }
-    ],
     "name": "pandawan-technology/money-bundle",
     "description": "Integrates moneyphp/money into Symfony' applications",
     "authors": [

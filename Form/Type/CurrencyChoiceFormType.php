@@ -18,7 +18,7 @@ class CurrencyChoiceFormType extends AbstractType
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getParent(): string
     {
@@ -26,7 +26,7 @@ class CurrencyChoiceFormType extends AbstractType
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

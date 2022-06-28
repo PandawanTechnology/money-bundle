@@ -17,7 +17,7 @@ class MoneyExtension extends AbstractExtension
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getFilters(): array
     {
@@ -28,7 +28,7 @@ class MoneyExtension extends AbstractExtension
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getFunctions(): array
     {
