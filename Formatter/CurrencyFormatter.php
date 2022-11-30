@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PandawanTechnology\MoneyBundle\Formatter;
 
 use Symfony\Component\Intl\Currencies;
+use Symfony\Component\Intl\Exception\MissingResourceException;
 
 class CurrencyFormatter
 {
@@ -16,6 +17,10 @@ class CurrencyFormatter
 
     public function getSymbol(string $currencyCode, ?string $locale): string
     {
-        return Currencies::getSymbol($currencyCode, $locale ?: $this->defaultLocale);
+        try {
+            return Currencies::getSymbol($currencyCode, $locale ?: $this->defaultLocale);
+        } catch (MissingResourceException $e) {
+            return $currencyCode;
+        }
     }
 }

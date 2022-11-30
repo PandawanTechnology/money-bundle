@@ -1,10 +1,18 @@
 # Features:
 - PHP 8.0 attributes' support
-- automaticaly add Form type
-- automaticaly add DB types for mapping (doctrine only): `amount` and `currency` columns' mappings
+- automatically add Form type
+- automatically add DB types for mapping (doctrine only): `amount` and `currency` columns' mappings
+
+# Configuration
+```yaml
+# config/packages/pandawan_technology_money.yaml
+pandawan_technology_money:
+    default_currency: EUR # Required, any ISO currency's code
+    default_locale: "%kernel.default_locale%" # Optional, default to "%kernel.default_locale%"
+```
 
 # Usage
-## doctrine's mapping:
+## Doctrine's mapping:
 ```php
 <?php
 
@@ -18,4 +26,13 @@ class Product {
     #[ORM\Embedded(class: Money::class)]
     private $price;
 } 
+```
+
+## Forms in twig
+```yaml
+# config/packages/twig.yaml
+twig:
+    form_themes:
+        # …
+        - '@PandawanTechnologyMoney/Form/bootstrap_4.html.twig'
 ```

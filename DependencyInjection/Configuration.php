@@ -7,6 +7,8 @@ namespace PandawanTechnology\MoneyBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
+
 /**
  * TODO:
  * - add a currency configuration loader
@@ -27,7 +29,6 @@ class Configuration implements ConfigurationInterface
                 ->info('The default currency to use when not specified')
             ->end()
             ->scalarNode('default_locale')
-                ->isRequired()
                 ->info('The default locale to use when not specified')
             ->end()
             ->arrayNode('enabled_currencies')

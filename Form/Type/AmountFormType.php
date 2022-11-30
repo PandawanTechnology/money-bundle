@@ -18,7 +18,7 @@ class AmountFormType extends AbstractType
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getParent(): string
     {
@@ -26,7 +26,7 @@ class AmountFormType extends AbstractType
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -57,7 +57,6 @@ class AmountFormType extends AbstractType
                 if (isset($currentValue['step'])) {
                     return $currentValue;
                 }
-
 
                 $currentValue['step'] = 1 / pow(10, $options['scale']);
 

@@ -23,7 +23,7 @@ class PandawanTechnologyMoneyExtension extends Extension implements PrependExten
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('pandawan_technology.money.default_currency', $config['default_currency']);
-        $container->setParameter('pandawan_technology.money.default_locale', $config['default_locale']);
+        $container->setParameter('pandawan_technology.money.default_locale', $config['default_locale'] ?? $container->getParameter('kernel.default_locale'));
         $container->setParameter('pandawan_technology.money.enabled_currencies', $config['enabled_currencies']);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
