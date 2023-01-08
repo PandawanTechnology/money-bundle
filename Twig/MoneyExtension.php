@@ -10,6 +10,7 @@ use PandawanTechnology\Money\Formatter\FormatterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Twig\TwigTest;
 
 class MoneyExtension extends AbstractExtension
 {
