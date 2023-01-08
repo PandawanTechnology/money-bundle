@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PandawanTechnology\MoneyBundle\Twig;
 
 use PandawanTechnology\Money\Calculator\CalculatorInterface;
+use PandawanTechnology\Money\Comparator\ComparatorInterface;
 use PandawanTechnology\Money\Formatter\FormatterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -12,8 +13,11 @@ use Twig\TwigFunction;
 
 class MoneyExtension extends AbstractExtension
 {
-    public function __construct(private FormatterInterface $formatter, private CalculatorInterface $calculator)
-    {
+    public function __construct(
+        private FormatterInterface $formatter,
+        private CalculatorInterface $calculator,
+        private ComparatorInterface $comparator,
+    ) {
     }
 
     /**
@@ -35,6 +39,7 @@ class MoneyExtension extends AbstractExtension
         return [
             new TwigFunction('money_divide', [$this->calculator, 'divide']),
             new TwigFunction('money_multiply', [$this->calculator, 'multiply']),
+            new TwigFunction('money_zero_amount', [$this->comparator, 'isZeroAmount']),
         ];
     }
 }
