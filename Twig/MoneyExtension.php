@@ -39,7 +39,13 @@ class MoneyExtension extends AbstractExtension
         return [
             new TwigFunction('money_divide', [$this->calculator, 'divide']),
             new TwigFunction('money_multiply', [$this->calculator, 'multiply']),
-            new TwigFunction('money_zero_amount', [$this->comparator, 'isZeroAmount']),
+        ];
+    }
+
+    public function getTests(): array
+    {
+        return [
+            new TwigTest('money_zero_amount', [$this->comparator, 'isZeroAmount']),
         ];
     }
 }
