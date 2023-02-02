@@ -32,12 +32,5 @@
             "PandawanTechnology\\MoneyBundle\\Tests\\": "Tests/"
         }
     },
-    "replace": {
-        "symfony/polyfill-php71": "*",
-        "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php73": "*",
-        "symfony/polyfill-php74": "*",
-        "symfony/polyfill-php80": "*"
-    },
     "minimum-stability": "dev"
 }
