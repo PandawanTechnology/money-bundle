@@ -13,8 +13,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CurrencyChoiceFormType extends AbstractType
 {
-    public function __construct(private CurrencyManager $currencyManager, private CurrencyFormatter $currencyFormatter)
-    {
+    public function __construct(
+        private CurrencyManager $currencyManager,
+        private CurrencyFormatter $currencyFormatter
+    ) {
     }
 
     /**
@@ -39,6 +41,7 @@ class CurrencyChoiceFormType extends AbstractType
                 'choice_translation_domain' => false,
             ])
             ->setAllowedTypes('use_symbols', ['bool'])
+            // TODO add test coverage
             ->setNormalizer('choice_label', function (Options $options) {
                 if (!$options['use_symbols']) {
                     return null;

@@ -8,9 +8,10 @@ use PandawanTechnology\Money\Factory\MoneyFactory;
 use PandawanTechnology\Money\Manager\CurrencyManager;
 use PandawanTechnology\Money\Model\Money;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Event\PreSetDataEvent;
+use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SimpleMoneyFormType extends AbstractType
@@ -30,14 +31,18 @@ class SimpleMoneyFormType extends AbstractType
         $resolver
             ->setDefaults([
                 'data_class' => Money::class,
-                'currency' => null,
+                'currency' => $this->defaultCurrencyCode,
                 'amount_options' => [],
+                'empty_data' => function (Options $options) {
+                    if (!$options['required']) {
+                        return null;
+                    }
+
+                    return $this->moneyFactory->createMoney(0, $options['currency']);
+                },
             ])
-            ->setAllowedTypes('currency', ['null', 'string'])
-            ->setAllowedValues('currency', array_merge([null], $this->currencyManager->getAllowedCurrencyCodes()))
-            ->setNormalizer('currency', function (OptionsResolver $optionsResolver, ?string $currency = null) {
-                return \is_null($currency) ? $this->defaultCurrencyCode : $currency;
-            })
+            ->setAllowedTypes('currency', ['string'])
+            ->setAllowedValues('currency', $this->currencyManager->getAllowedCurrencyCodes())
             ->setAllowedTypes('amount_options', ['array'])
         ;
     }
@@ -49,17 +54,20 @@ class SimpleMoneyFormType extends AbstractType
     {
         $builder
             ->add('amount', AmountFormType::class, $options['amount_options'])
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (PreSetDataEvent $preSetDataEvent) {
-                $formConfig = $preSetDataEvent->getForm()->getConfig();
+            ->addEventListener(FormEvents::PRE_SUBMIT, function (PreSubmitEvent $preSubmitEvent) {
+                $submittedData = $preSubmitEvent->getData();
 
-                if (
-                    $preSetDataEvent->getData() ||
-                    !$formConfig->getOption('required')
-                ) {
-                    return;
+                if (!isset($submittedData['amount'])) {
+                    return null;
                 }
 
-                $preSetDataEvent->setData($this->moneyFactory->createMoney(0, $formConfig->getOption('currency')));
+                $form = $preSubmitEvent->getForm();
+                $money = $this->moneyFactory->createMoney(
+                    $submittedData['amount'],
+                    $form->getConfig()->getOption('currency')
+                );
+
+                $form->setData($money);
             })
         ;
     }

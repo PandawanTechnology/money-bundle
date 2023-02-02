@@ -13,8 +13,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AmountFormType extends AbstractType
 {
-    public function __construct(private string $defaultCurrencyCode, private CurrencyManager $currencyManager)
-    {
+    public function __construct(
+        private string $defaultCurrencyCode,
+        private CurrencyManager $currencyManager
+    ) {
     }
 
     /**
@@ -33,27 +35,16 @@ class AmountFormType extends AbstractType
         $resolver
             ->setDefaults([
                 'html5' => true,
-                'currency' => null,
-                'scale' => null, // will be overridden in normalizer based on selected currency
+                'currency' => $this->defaultCurrencyCode,
+                'scale' => CurrencyFormatter::DEFAULT_DECIMAL_SCALE,
             ])
             // Only enable allowed currencies. Will be set to default currency if null
-            ->setAllowedTypes('currency', ['null', 'string'])
-            ->setAllowedValues('currency', array_merge([null], $this->currencyManager->getAllowedCurrencyCodes()))
-            ->setNormalizer('currency', function (OptionsResolver $optionsResolver, ?string $currency = null) {
-                return \is_null($currency) ? $this->defaultCurrencyCode : $currency;
-            })
+            ->setAllowedTypes('currency', ['string'])
+            ->setAllowedValues('currency', $this->currencyManager->getAllowedCurrencyCodes())
 
             // Make sure that if a scale has been provided, it does not exceed the maximum length
             ->setAllowedTypes('scale', ['int', 'null'])
-            ->setAllowedValues('scale', [null] + range(0, CurrencyFormatter::DEFAULT_DECIMAL_SCALE))
-            ->setNormalizer('scale', function (OptionsResolver $optionsResolver, ?int $scale = null) {
-                if (!\is_null($scale)) {
-                    return $scale;
-                }
-
-                return $this->currencyManager->getCurrencyPrecision($optionsResolver['currency']);
-            })
-            ->setNormalizer('attr', function (Options $options, array $currentValue) {
+            ->setNormalizer('attr', static function (Options $options, array $currentValue) {
                 if (isset($currentValue['step'])) {
                     return $currentValue;
                 }
