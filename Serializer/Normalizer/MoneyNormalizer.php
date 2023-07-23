@@ -17,7 +17,7 @@ class MoneyNormalizer implements NormalizerInterface
     /**
      * {@inheritDoc}
      */
-    public function supportsNormalization($data, string $format = null)
+    public function supportsNormalization($data, string $format = null): bool
     {
         return $data instanceof Money;
     }
@@ -27,7 +27,7 @@ class MoneyNormalizer implements NormalizerInterface
      *
      * {@inheritDoc}
      */
-    public function normalize($object, string $format = null, array $context = [])
+    public function normalize($object, string $format = null, array $context = []): array|string|int|float|bool|\ArrayObject|null
     {
         return [
             'amount' => $this->formatter->asFloat($object),
